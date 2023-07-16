@@ -4,10 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@300&family=Neuton:wght@300&family=Raleway:wght@200&display=swap" 
+      rel="stylesheet"
+    >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
+    crossorigin="anonymous" 
+    referrerpolicy="no-referrer" 
+    />
     <title>Wheater now!</title>
 </head>
 <body>
-    
+    <div class="container">
+        <div class="form">
+            <h3>COnfira o clima de alguma cidade:</h3>
+            <div class="input-form-container">
+                <input type="text" id="city_input" placeholder="Digite o nome da cidade">
+                <button id="search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </div>
+        </div>
+        <div class="weather-data">
+            <h2>
+                <i class="fa-solid fa-location-dot"></i>
+                <span id="city">Limeira</span>
+                <img src="" id="country" >
+            </h2>
+            <p id="temperature">
+                <span>6</span>
+                &deg;C
+            </p>
+            <div id="descripition-container">
+
+            </div>
+        </div>
+    </div>
 
     <script src="script/script.js"></script>
 </body>
