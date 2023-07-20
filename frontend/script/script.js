@@ -20,12 +20,12 @@ const getWeatherData = async(city)=>{
 }
 const showWeathetData = async (city)=>{
     const data = await getWeatherData(city)
-
+    let countryCode = data.sys.country
+    country.setAttribute('src',`https://www.countryflagicons.com/FLAT/64/${countryCode}.png`)
     cityElement.innerText = data.name
     temp.innerText = data.main.temp
     descripition.innerText = data.weather[0].description
-    let countryCode = data.sys.country
-    weatherIcon.setAttribute('src',``)
+    weatherIcon.setAttribute('src',`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`)
  }
 
 
