@@ -25,8 +25,7 @@ const showWeathetData = async (city)=>{
     temp.innerText = data.main.temp
     descripition.innerText = data.weather[0].description
     let countryCode = data.sys.country
-    apicountry =  `https://www.countryflagicons.com/FLAT/64/${countryCode}.png`
-    country.innerHTML = `src='${apicountry}'`
+    weatherIcon.setAttribute('src',``)
  }
 
 
