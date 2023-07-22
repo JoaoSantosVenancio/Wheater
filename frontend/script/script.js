@@ -7,7 +7,7 @@ const temp = document.querySelector('#temperature span')
 const descripition = document.querySelector('#descripition')
 const weatherIcon = document.querySelector('#weather-icon')
 const country = document.querySelector('#country')
-const umidity = document.querySelector('#umdity span')
+const umidity = document.querySelector('#umidity span')
 const wind = document.querySelector('#wind span')
 
 const getWeatherData = async(city)=>{
@@ -21,12 +21,17 @@ const getWeatherData = async(city)=>{
 const showWeathetData = async (city)=>{
     const data = await getWeatherData(city)
     let countryCode = data.sys.country
+    let windToKmH = data.wind.speed * 3.6
+    windToKmH = Math.floor(windToKmH*100) /100
+
     country.setAttribute('src',`https://www.countryflagicons.com/FLAT/64/${countryCode}.png`)
     cityElement.innerText = data.name
     temp.innerText = data.main.temp
     descripition.innerText = data.weather[0].description
     weatherIcon.setAttribute('src',`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`)
- }
+    umidity.innerText = data.main.humidity + '%'
+    wind.innerText = windToKmH + 'Km/h'
+}
 
 
 searchButton.addEventListener('click',(e)=>{
