@@ -9,6 +9,8 @@ const weatherIcon = document.querySelector('#weather-icon')
 const country = document.querySelector('#country')
 const umidity = document.querySelector('#umidity span')
 const wind = document.querySelector('#wind span')
+const weatherContainer = document.querySelector('.weather-data')
+
 
 const getWeatherData = async(city)=>{
     const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}&lang=pt_br`
@@ -18,7 +20,9 @@ const getWeatherData = async(city)=>{
     console.log(data)
     return data
 }
+
 const showWeathetData = async (city)=>{
+    weatherContainer.removeAttribute('id')
     const data = await getWeatherData(city)
     let countryCode = data.sys.country
     let windToKmH = data.wind.speed * 3.6
@@ -32,7 +36,6 @@ const showWeathetData = async (city)=>{
     umidity.innerText = data.main.humidity + '%'
     wind.innerText = windToKmH + 'Km/h'
 }
-
 
 searchButton.addEventListener('click',(e)=>{
     e.preventDefault()
