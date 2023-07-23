@@ -11,7 +11,6 @@ const umidity = document.querySelector('#umidity span')
 const wind = document.querySelector('#wind span')
 const weatherContainer = document.querySelector('.weather-data')
 
-
 const getWeatherData = async(city)=>{
     const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}&lang=pt_br`
 
@@ -20,21 +19,27 @@ const getWeatherData = async(city)=>{
     console.log(data)
     return data
 }
-
 const showWeathetData = async (city)=>{
-    weatherContainer.removeAttribute('id')
     const data = await getWeatherData(city)
-    let countryCode = data.sys.country
-    let windToKmH = data.wind.speed * 3.6
-    windToKmH = Math.floor(windToKmH*100) /100
+    if(data.cod == '404'){
+        alert('Verifique se o nome da cidade foi digitado corretamente!')
+        cityInput.focus()
+        cityInput.value = ' '
+    }
+    else{
+        weatherContainer.removeAttribute('id')
+        let countryCode = data.sys.country
+        let windToKmH = data.wind.speed * 3.6
+        windToKmH = Math.floor(windToKmH*100) /100
 
-    country.setAttribute('src',`https://www.countryflagicons.com/FLAT/64/${countryCode}.png`)
-    cityElement.innerText = data.name
-    temp.innerText = data.main.temp
-    descripition.innerText = data.weather[0].description
-    weatherIcon.setAttribute('src',`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`)
-    umidity.innerText = data.main.humidity + '%'
-    wind.innerText = windToKmH + 'Km/h'
+        country.setAttribute('src',`https://www.countryflagicons.com/FLAT/64/${countryCode}.png`)
+        cityElement.innerText = data.name
+        temp.innerText = data.main.temp
+        descripition.innerText = data.weather[0].description
+        weatherIcon.setAttribute('src',`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`)
+        umidity.innerText = data.main.humidity + '%'
+        wind.innerText = windToKmH + 'Km/h' 
+        }
 }
 
 searchButton.addEventListener('click',(e)=>{
@@ -42,4 +47,10 @@ searchButton.addEventListener('click',(e)=>{
     const city = cityInput.value
 
     showWeathetData(city)
+})
+cityInput.addEventListener('keyup',(e)=>{
+    if(e.code === 'Enter'){
+        const city = e.target.value
+        showWeathetData(city)
+    }
 })
