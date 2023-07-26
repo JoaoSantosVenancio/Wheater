@@ -10,6 +10,7 @@ const country = document.querySelector('#country')
 const umidity = document.querySelector('#umidity span')
 const wind = document.querySelector('#wind span')
 const weatherContainer = document.querySelector('.weather-data')
+const body = document.body
 
 const getWeatherData = async(city)=>{
     const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}&lang=pt_br`
@@ -21,7 +22,11 @@ const getWeatherData = async(city)=>{
 }
 const showWeathetData = async (city)=>{
     const data = await getWeatherData(city)
-    if(data.cod == '404'){
+    if(cityInput.value == ''){
+        alert('Digite o nome de uma cidade para saber caracteristicas do clima!')
+        cityInput.focus()
+    }
+    else if(data.cod == '404'){
         alert('Verifique se o nome da cidade foi digitado corretamente!')
         cityInput.focus()
         cityInput.value = ' '
@@ -54,3 +59,11 @@ cityInput.addEventListener('keyup',(e)=>{
         showWeathetData(city)
     }
 })
+let utc = new Date()
+utc.getTime()
+let data = utc.toTimeString('pt-br')
+console.log(data)
+
+if(data > '18:00'){
+    body.style.background = ''
+}
