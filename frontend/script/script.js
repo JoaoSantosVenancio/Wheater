@@ -18,10 +18,8 @@ const data = utc.toTimeString('pt-br')
 
 const getWeatherData = async(city)=>{
     const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}&lang=pt_br`
-
     const res = await fetch(apiWeatherURL)
     const data = await res.json()
-    console.log(data)
     return data
 }
 const showWeathetData = async (city)=>{
@@ -48,6 +46,7 @@ const showWeathetData = async (city)=>{
         weatherIcon.setAttribute('src',`http://openweathermap.org/img/wn/${data.weather[0].icon}.png`)
         umidity.innerText = data.main.humidity + '%'
         wind.innerText = windToKmH + 'Km/h' 
+        cityInput.value = ''
         }
 }
 
