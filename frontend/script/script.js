@@ -11,6 +11,10 @@ const umidity = document.querySelector('#umidity span')
 const wind = document.querySelector('#wind span')
 const weatherContainer = document.querySelector('.weather-data')
 const body = document.body
+const container = document.querySelector('.container')
+const utc = new Date()
+utc.getTime()
+const data = utc.toTimeString('pt-br')
 
 const getWeatherData = async(city)=>{
     const apiWeatherURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}&lang=pt_br`
@@ -59,11 +63,7 @@ cityInput.addEventListener('keyup',(e)=>{
         showWeathetData(city)
     }
 })
-let utc = new Date()
-utc.getTime()
-let data = utc.toTimeString('pt-br')
-console.log(data)
-
-if(data > '18:00'){
-    body.style.background = ''
+if(data > '18'){
+    body.style.background = 'linear-gradient(180deg, #4d194d 0%, #272640 100%)'
+    container.style.background = '#212f45'
 }
